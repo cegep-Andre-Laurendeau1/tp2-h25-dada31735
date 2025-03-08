@@ -2,7 +2,7 @@ package ca.cal.tp2.persistance;
 
 import java.sql.*;
 
-public abstract class RepositoryParent {
+public abstract class RepositoryJDBCParent {
     static final String JDBC_DRIVER = "org.h2.Driver";
     static final String DB_URL = "jdbc:h2:mem:exercicejdbc;DB_CLOSE_DELAY=-1";
     //  Database credentials
@@ -51,10 +51,10 @@ public abstract class RepositoryParent {
     protected abstract String getSaveSql();
     protected  abstract <T> void prepareStatement(PreparedStatement preparedStatement, T t) throws SQLException;
 
-    public <T> T get(int id) {
+    public <T> T get(long id) {
         String sql = getGetSql();
         try(PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return rehydrateT(resultSet);
