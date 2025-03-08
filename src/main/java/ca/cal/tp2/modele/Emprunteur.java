@@ -1,8 +1,15 @@
 package ca.cal.tp2.modele;
 
-import lombok.Data;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-@Data
+
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@DiscriminatorValue("E")
 class Emprunteur extends Utilisateur {
     public void emprunte(Document doc) {}
     public void retourneDocument(Document doc) {}
