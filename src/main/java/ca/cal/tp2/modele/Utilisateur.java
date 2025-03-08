@@ -1,10 +1,15 @@
 package ca.cal.tp2.modele;
 
-import lombok.Data;
+import jakarta.persistence.*;
 
-@Data
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type")
 public abstract class Utilisateur {
-    private int userID;
+    @Id
+    @GeneratedValue
+    private long userID;
     private String name;
     private String email;
     private String phoneNumber;
