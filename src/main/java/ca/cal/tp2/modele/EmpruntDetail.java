@@ -1,18 +1,26 @@
 package ca.cal.tp2.modele;
 
-import lombok.Data;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
-@Data
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class EmpruntDetail {
-    private int lineItemID;
-    private Date dateRetourPrevue;
-    private Date dateRetourActuelle;
+    @Id
+    @GeneratedValue
+    private long lineItemID;
+    private LocalDate dateRetourPrevue;
+    private LocalDate dateRetourActuelle;
     private String status;
 
     public boolean isEnRetard() {
-        return dateRetourActuelle.after(dateRetourPrevue);
+        return dateRetourActuelle.isAfter(dateRetourPrevue);
     }
 
     public void calculAmende() {
