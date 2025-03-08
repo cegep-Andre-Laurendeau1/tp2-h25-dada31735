@@ -3,6 +3,7 @@ package ca.cal.tp2.modele;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,8 @@ public class EmpruntDetail {
     private LocalDate dateRetourPrevue;
     private LocalDate dateRetourActuelle;
     private String status;
+    @OneToOne
+    private Document document;
 
     public boolean isEnRetard() {
         return dateRetourActuelle.isAfter(dateRetourPrevue);
