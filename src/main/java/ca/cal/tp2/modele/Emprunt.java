@@ -1,14 +1,23 @@
 package ca.cal.tp2.modele;
 
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
-@Data
+
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
 class Emprunt {
-    private int borrowID;
-    private Date dateEmprunt;
+    @Id
+    @GeneratedValue
+    private long borrowID;
+    private LocalDate dateEmprunt;
     private String status;
+
+    @OneToMany(mappedBy = "emprunt")
     private List<EmpruntDetail> items;
 }
