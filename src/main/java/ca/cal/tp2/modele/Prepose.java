@@ -1,5 +1,15 @@
 package ca.cal.tp2.modele;
 
+
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@DiscriminatorValue("P")
 public class Prepose extends Utilisateur {
 
     public void entrerNouveauDocument(Document document){
