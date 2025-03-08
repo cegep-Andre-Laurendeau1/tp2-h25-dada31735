@@ -1,10 +1,15 @@
 package ca.cal.tp2.modele;
 
-import lombok.Data;
 
-@Data
+import jakarta.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type")
 public abstract class Document {
-    private int documentID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private long documentID;
     private String titre;
     private int nombreExemplaires;
 
