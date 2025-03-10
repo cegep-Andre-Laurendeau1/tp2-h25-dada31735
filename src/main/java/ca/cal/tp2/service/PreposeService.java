@@ -1,17 +1,21 @@
 package ca.cal.tp2.service;
 
 import ca.cal.tp2.modele.CD;
+import ca.cal.tp2.modele.DVD;
 import ca.cal.tp2.modele.Livre;
 import ca.cal.tp2.persistance.CDRepository;
+import ca.cal.tp2.persistance.DVDRepository;
 import ca.cal.tp2.persistance.LivreRepository;
 
 public class PreposeService {
     private final LivreRepository livreRepository;
     private final CDRepository cdRepository;
+    private final DVDRepository dvdRepository;
 
-    public PreposeService(LivreRepository livreRepository, CDRepository cdRepository) {
+    public PreposeService(LivreRepository livreRepository, CDRepository cdRepository, DVDRepository dvdRepository) {
         this.livreRepository = livreRepository;
         this.cdRepository = cdRepository;
+        this.dvdRepository = dvdRepository;
     }
 
     public void ajouterLivre(String ISBN, String auteur, String editeur, int nombrePages) {
@@ -26,5 +30,18 @@ public class PreposeService {
     public void ajouterCD(String artiste, int duree, String genre) {
         CD cd = new CD(artiste, duree, genre);
         cdRepository.save(cd);
+    }
+
+    public CD obtenirCD(long id) {
+        return cdRepository.get(id);
+    }
+
+    public void ajouterDVD(String realisateur, int duree, String rating) {
+        DVD dvd = new DVD(realisateur, duree, rating);
+        dvdRepository.save(dvd);
+    }
+
+    public DVD obtenirDVD(long id) {
+        return dvdRepository.get(id);
     }
 }
