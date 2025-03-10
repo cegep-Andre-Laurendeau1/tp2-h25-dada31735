@@ -7,8 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @DiscriminatorValue("P")
 public class Prepose extends Utilisateur {
 

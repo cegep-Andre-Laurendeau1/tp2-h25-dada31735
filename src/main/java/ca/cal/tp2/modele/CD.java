@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@DiscriminatorValue("L")
+@DiscriminatorValue("C")
 class CD extends Document {
     private String artiste;
     private int duree;

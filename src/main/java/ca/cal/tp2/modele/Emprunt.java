@@ -22,6 +22,9 @@ class Emprunt {
     private LocalDate dateEmprunt;
     private String status;
 
+    @ManyToOne
+    private Emprunteur emprunteur;
+
     @OneToMany(mappedBy = "emprunt")
     private List<EmpruntDetail> items;
 }

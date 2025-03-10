@@ -15,7 +15,7 @@ public class LivreRepositoryJDBC extends RepositoryJDBCParent implements LivreRe
     @Override
     protected <T> void prepareStatement(PreparedStatement preparedStatement, T t) throws SQLException {
         Livre livre = (Livre) t;
-        preparedStatement.setInt(1, livre.getDocumentID());
+        preparedStatement.setLong(1, livre.getDocumentID());
         preparedStatement.setString(2, livre.getTitre());
         preparedStatement.setString(3, livre.getAuteur());
         preparedStatement.setString(4, livre.getEditeur());

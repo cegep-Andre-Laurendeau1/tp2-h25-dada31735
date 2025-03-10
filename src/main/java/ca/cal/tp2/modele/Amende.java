@@ -1,9 +1,6 @@
 package ca.cal.tp2.modele;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +20,9 @@ class Amende {
     private double montant;
     private LocalDate dateCreation;
     private boolean status;
+
+    @ManyToOne
+    private Emprunteur emprunteur;
 
     public void calculMontant() {}
     public void updateStatus() {}
