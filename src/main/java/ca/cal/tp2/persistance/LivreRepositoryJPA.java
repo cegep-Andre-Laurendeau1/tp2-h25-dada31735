@@ -12,6 +12,15 @@ public class LivreRepositoryJPA implements LivreRepository {
     public void save(Livre livre) {
         try (EntityManager em = entityManagerFactory.createEntityManager()) {
             em.getTransaction().begin();
+
+            Livre livreExistant = recherche(livre.getTitre().toLowerCase());
+            if (livreExistant != null) {
+                livreExistant.setNombreExemplaires(livreExistant.getNombreExemplaires() + livre.getNombreExemplaires());
+                em.merge(livreExistant);
+                em.getTransaction().commit();
+                return;
+            }
+
             em.persist(livre);
             em.getTransaction().commit();
         } catch (Exception e) {
