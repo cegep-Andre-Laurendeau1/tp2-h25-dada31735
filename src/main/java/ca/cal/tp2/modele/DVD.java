@@ -18,4 +18,11 @@ public class DVD extends Document {
     private String director;
     private int duree;
     private String rating;
+
+    public DVD(String titre, int nombreExemplaires, String director, int duree, String rating) {
+        super(titre, nombreExemplaires);
+        this.director = director;
+        this.duree = duree;
+        this.rating = rating;
+    }
 }

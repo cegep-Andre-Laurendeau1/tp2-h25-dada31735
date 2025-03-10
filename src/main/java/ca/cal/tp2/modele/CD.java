@@ -18,4 +18,11 @@ public class CD extends Document {
     private String artiste;
     private int duree;
     private String genre;
+
+    public CD(String titre, int nombreExemplaires, String artiste, int duree, String genre) {
+        super(titre, nombreExemplaires);
+        this.artiste = artiste;
+        this.duree = duree;
+        this.genre = genre;
+    }
 }
