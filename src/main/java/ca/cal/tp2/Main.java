@@ -12,9 +12,9 @@ public class Main {
         // Votre script qui utilise votre API ici
         TcpServer.startTcpServer();
         PreposeService preposeService = new PreposeService(new LivreRepositoryJPA(), new CDRepositoryJPA(), new DVDRepositoryJPA());
-        preposeService.ajouterLivre("1239123", "tolkien", "hobbit", 1000);
-        preposeService.ajouterCD("Avril Lavigne", 100, "pop");
-        preposeService.ajouterDVD("Tarantino", 120, "fresh");
+        preposeService.ajouterLivre("Seigneur des anneaux", 100,"1239123", "tolkien", "hobbit", 1000);
+        preposeService.ajouterCD("Let go", 100,"Avril Lavigne", 100, "pop");
+        preposeService.ajouterDVD("Once upon a time in Hollywood", 5,"Tarantino", 120, "fresh");
         Thread.currentThread().join();
     }
 }

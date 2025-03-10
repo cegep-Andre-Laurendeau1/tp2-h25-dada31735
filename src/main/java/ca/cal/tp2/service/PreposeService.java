@@ -18,8 +18,8 @@ public class PreposeService {
         this.dvdRepository = dvdRepository;
     }
 
-    public void ajouterLivre(String ISBN, String auteur, String editeur, int nombrePages) {
-        Livre livre = new Livre(ISBN, auteur, editeur, nombrePages);
+    public void ajouterLivre(String titre, int nombreExemplaires, String ISBN, String auteur, String editeur, int nombrePages) {
+        Livre livre = new Livre(titre, nombreExemplaires, ISBN, auteur, editeur, nombrePages);
         livreRepository.save(livre);
     }
 
@@ -27,8 +27,8 @@ public class PreposeService {
         return livreRepository.get(id);
     }
 
-    public void ajouterCD(String artiste, int duree, String genre) {
-        CD cd = new CD(artiste, duree, genre);
+    public void ajouterCD(String titre, int nombreExemplaire, String artiste, int duree, String genre) {
+        CD cd = new CD(titre, nombreExemplaire, artiste, duree, genre);
         cdRepository.save(cd);
     }
 
@@ -36,8 +36,8 @@ public class PreposeService {
         return cdRepository.get(id);
     }
 
-    public void ajouterDVD(String realisateur, int duree, String rating) {
-        DVD dvd = new DVD(realisateur, duree, rating);
+    public void ajouterDVD(String titre, int nombreExemplaire, String realisateur, int duree, String rating) {
+        DVD dvd = new DVD(titre, nombreExemplaire, realisateur, duree, rating);
         dvdRepository.save(dvd);
     }
 

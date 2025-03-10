@@ -30,4 +30,16 @@ public class LivreRepositoryJPA implements LivreRepository {
             return null;
         }
     }
+
+    @Override
+    public Livre recherche(String titre) {
+        try (EntityManager em = entityManagerFactory.createEntityManager()) {
+            return em.createQuery("SELECT l FROM Livre l WHERE l.titre LIKE :titre", Livre.class)
+                    .setParameter("titre", "%" + titre + "%")
+                    .getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

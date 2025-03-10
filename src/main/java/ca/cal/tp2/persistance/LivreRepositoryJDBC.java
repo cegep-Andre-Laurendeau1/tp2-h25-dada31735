@@ -47,4 +47,9 @@ public class LivreRepositoryJDBC extends RepositoryJDBCParent implements LivreRe
     public Livre get(long id) {
         return super.get(id);
     }
+
+    @Override
+    public Livre recherche(String titre) {
+        return null;
+    }
 }
