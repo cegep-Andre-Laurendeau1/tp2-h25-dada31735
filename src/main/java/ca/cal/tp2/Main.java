@@ -15,6 +15,9 @@ public class Main {
         preposeService.ajouterLivre("Seigneur des anneaux", 100,"1239123", "tolkien", "hobbit", 1000);
         preposeService.ajouterCD("Let go", 100,"Avril Lavigne", 100, "pop");
         preposeService.ajouterDVD("Once upon a time in Hollywood", 5,"Tarantino", 120, "fresh");
+
+        System.out.println(preposeService.rechercheLivre("anneaux"));
+
         Thread.currentThread().join();
     }
 }
