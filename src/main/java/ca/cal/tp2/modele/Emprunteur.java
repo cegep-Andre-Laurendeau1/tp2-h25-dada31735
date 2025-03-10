@@ -24,6 +24,10 @@ public class Emprunteur extends Utilisateur {
     @OneToMany(mappedBy = "emprunteur")
     private List<Amende> amendes;
 
+    public Emprunteur(String nom, String telephone, String courriel) {
+        super(nom, courriel, telephone);
+    }
+
     public void emprunte(Document doc) {}
     public void retourneDocument(Document doc) {}
     public void payeAmende(double montant) {}

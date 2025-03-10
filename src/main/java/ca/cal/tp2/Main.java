@@ -2,6 +2,7 @@ package ca.cal.tp2;
 
 import ca.cal.tp2.persistance.CDRepositoryJPA;
 import ca.cal.tp2.persistance.DVDRepositoryJPA;
+import ca.cal.tp2.persistance.EmprunteurRepositoryJPA;
 import ca.cal.tp2.persistance.LivreRepositoryJPA;
 import ca.cal.tp2.service.PreposeService;
 
@@ -11,7 +12,7 @@ public class Main {
     public static void main(String[] args) throws SQLException, InterruptedException {
         // Votre script qui utilise votre API ici
         TcpServer.startTcpServer();
-        PreposeService preposeService = new PreposeService(new LivreRepositoryJPA(), new CDRepositoryJPA(), new DVDRepositoryJPA());
+        PreposeService preposeService = new PreposeService(new LivreRepositoryJPA(), new CDRepositoryJPA(), new DVDRepositoryJPA(), new EmprunteurRepositoryJPA());
 
         //ajouts livres
         preposeService.ajouterLivre("Seigneur des anneaux", 100,"1239123", "tolkien", "hobbit", 1000);
@@ -22,6 +23,9 @@ public class Main {
 
         //ajouts DVD
         preposeService.ajouterDVD("Once upon a time in Hollywood", 5,"Tarantino", 120, "fresh");
+
+        //ajouts Emprunteurs
+        preposeService.ajouterEmprunteur("Dumitru", "qwerty@azerty.com", "1234567890");
 
         //recherches de livre
         //par titre
