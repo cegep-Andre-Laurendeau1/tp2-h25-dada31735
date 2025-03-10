@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @DiscriminatorValue("D")
-class DVD extends Document {
+public class DVD extends Document {
     private String director;
     private int duree;
     private String rating;
