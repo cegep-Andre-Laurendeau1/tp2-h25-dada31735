@@ -23,7 +23,9 @@ public class Main {
         //ajouts DVD
         preposeService.ajouterDVD("Once upon a time in Hollywood", 5,"Tarantino", 120, "fresh");
 
-        System.out.println(preposeService.rechercheLivre("Anneaux"));
+        //recherches de livre
+        //par titre
+        System.out.println(preposeService.rechercheLivre("Anneaux", "tolkien"));
 
         Thread.currentThread().join();
     }

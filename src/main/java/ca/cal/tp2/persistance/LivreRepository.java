@@ -5,5 +5,5 @@ import ca.cal.tp2.modele.Livre;
 public interface LivreRepository {
     public void save(Livre livre);
     public Livre get(long id);
-    public Livre recherche(String titre);
+    public Livre recherche(String titre, String auteur);
 }

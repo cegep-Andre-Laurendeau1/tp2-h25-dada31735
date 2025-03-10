@@ -27,8 +27,8 @@ public class PreposeService {
         return livreRepository.get(id);
     }
 
-    public Livre rechercheLivre(String titre) {
-        return livreRepository.recherche(titre);
+    public Livre rechercheLivre(String titre, String auteur) {
+        return livreRepository.recherche(titre, auteur);
     }
 
     public void ajouterCD(String titre, int nombreExemplaire, String artiste, int duree, String genre) {

@@ -49,7 +49,7 @@ public class LivreRepositoryJDBC extends RepositoryJDBCParent implements LivreRe
     }
 
     @Override
-    public Livre recherche(String titre) {
+    public Livre recherche(String titre, String auteur) {
         return null;
     }
 }

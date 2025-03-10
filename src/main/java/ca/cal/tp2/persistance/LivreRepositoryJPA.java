@@ -13,7 +13,7 @@ public class LivreRepositoryJPA implements LivreRepository {
         try (EntityManager em = entityManagerFactory.createEntityManager()) {
             em.getTransaction().begin();
 
-            Livre livreExistant = recherche(livre.getTitre().toLowerCase());
+            Livre livreExistant = recherche(livre.getTitre(), livre.getAuteur());
             if (livreExistant != null) {
                 livreExistant.setNombreExemplaires(livreExistant.getNombreExemplaires() + livre.getNombreExemplaires());
                 em.merge(livreExistant);
@@ -41,9 +41,9 @@ public class LivreRepositoryJPA implements LivreRepository {
     }
 
     @Override
-    public Livre recherche(String titre) {
+    public Livre recherche(String titre, String auteur) {
         try (EntityManager em = entityManagerFactory.createEntityManager()) {
-            return em.createQuery("SELECT l FROM Livre l WHERE Lower(l.titre) LIKE :titre", Livre.class)
+            return em.createQuery("SELECT l FROM Livre l WHERE Lower(l.titre) LIKE :titre AND l.auteur=auteur", Livre.class)
                     .setParameter("titre", "%" + titre.toLowerCase() + "%")
                     .getSingleResult();
         } catch (Exception e) {
