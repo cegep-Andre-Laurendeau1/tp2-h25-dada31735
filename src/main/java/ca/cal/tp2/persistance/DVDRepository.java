@@ -5,4 +5,5 @@ import ca.cal.tp2.modele.DVD;
 public interface DVDRepository {
     public void save(DVD dvd);
     public DVD get(long id);
+    public DVD recherche(String titre, String artiste);
 }
