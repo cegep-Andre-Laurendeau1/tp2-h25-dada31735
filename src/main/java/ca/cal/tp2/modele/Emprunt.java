@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-class Emprunt {
+public class Emprunt {
     @Id
     @GeneratedValue
     private long borrowID;

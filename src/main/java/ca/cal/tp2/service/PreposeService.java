@@ -56,4 +56,8 @@ public class PreposeService {
     public void ajouterEmprunteur(String nom, String courriel, String telephone) {
         emprunteurRepository.save(new Emprunteur(nom, courriel, telephone));
     }
+
+    public Emprunteur rechercheEmprunteur(String name) {
+        return emprunteurRepository.recherche(name);
+    }
 }

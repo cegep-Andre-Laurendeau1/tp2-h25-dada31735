@@ -30,4 +30,28 @@ public class EmprunteurRepositoryJPA implements EmprunteurRepository {
             return null;
         }
     }
+
+    @Override
+    public Emprunteur recherche(String nom) {
+        try(EntityManager em = entityManagerFactory.createEntityManager()) {
+            return em.createQuery("SELECT e FROM Emprunteur e WHERE e.name = :nom", Emprunteur.class)
+                    .setParameter("nom", nom)
+                    .getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public Emprunteur findByIdWithEmprunts(long emprunteurId) {
+        try (EntityManager em = entityManagerFactory.createEntityManager()) {
+            return em.createQuery("SELECT e FROM Emprunteur e LEFT JOIN FETCH e.emprunts WHERE e.userID = :emprunteurId", Emprunteur.class)
+                    .setParameter("emprunteurId", emprunteurId)
+                    .getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

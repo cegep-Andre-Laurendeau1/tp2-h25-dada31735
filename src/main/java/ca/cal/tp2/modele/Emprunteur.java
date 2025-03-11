@@ -10,7 +10,6 @@ import lombok.Setter;
 
 import java.util.List;
 
-
 @Entity
 @Getter
 @Setter
@@ -27,9 +26,4 @@ public class Emprunteur extends Utilisateur {
     public Emprunteur(String nom, String telephone, String courriel) {
         super(nom, courriel, telephone);
     }
-
-    public void emprunte(Document doc) {}
-    public void retourneDocument(Document doc) {}
-    public void payeAmende(double montant) {}
-    public void rapportHistoriqueEmprunt() {}
 }

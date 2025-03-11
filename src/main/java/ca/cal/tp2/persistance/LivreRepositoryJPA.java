@@ -3,6 +3,7 @@ package ca.cal.tp2.persistance;
 import ca.cal.tp2.modele.Livre;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.Persistence;
 
 public class LivreRepositoryJPA implements LivreRepository {
@@ -14,13 +15,13 @@ public class LivreRepositoryJPA implements LivreRepository {
             em.getTransaction().begin();
 
             Livre livreExistant = recherche(livre.getTitre(), livre.getAuteur());
+
             if (livreExistant != null) {
                 livreExistant.setNombreExemplaires(livreExistant.getNombreExemplaires() + livre.getNombreExemplaires());
                 em.merge(livreExistant);
                 em.getTransaction().commit();
                 return;
             }
-
             em.persist(livre);
             em.getTransaction().commit();
         } catch (Exception e) {
