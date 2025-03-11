@@ -1,6 +1,6 @@
 package ca.cal.tp2;
 
-import ca.cal.tp2.modele.Document;
+import ca.cal.tp2.dto.LivreDTO;
 import ca.cal.tp2.modele.Emprunt;
 import ca.cal.tp2.modele.Emprunteur;
 import ca.cal.tp2.persistance.*;
@@ -15,7 +15,8 @@ public class Main {
         // Votre script qui utilise votre API ici
         TcpServer.startTcpServer();
         PreposeService preposeService = new PreposeService(new LivreRepositoryJPA(), new CDRepositoryJPA(), new DVDRepositoryJPA(), new EmprunteurRepositoryJPA());
-        EmprunteurService emprunteurService = new EmprunteurService(new EmpruntRepositoryJPA(), new EmprunteurRepositoryJPA());
+        EmprunteurService emprunteurService = new EmprunteurService(new EmpruntRepositoryJPA(), new EmprunteurRepositoryJPA(), new DocumentRepositoryJPA());
+
         //ajouts livres
         preposeService.ajouterLivre("Seigneur des anneaux", 100,"1239123", "tolkien", "hobbit", 1000);
         preposeService.ajouterLivre("Seigneur des anneaux", 100,"1239123", "tolkien", "hobbit", 1000);
@@ -34,7 +35,7 @@ public class Main {
         System.out.println(preposeService.rechercheLivre("Anneaux", "tolkien"));
 
         Emprunteur emprunteur = preposeService.rechercheEmprunteur("Dumitru");
-        Document livre = preposeService.rechercheLivre("Seigneur des anneaux", "tolkien");
+        LivreDTO livre = preposeService.rechercheLivre("Seigneur des anneaux", "tolkien");
 
         if (emprunteur != null && livre != null) {
             emprunteurService.emprunterDocument(emprunteur.getUserID(), livre);

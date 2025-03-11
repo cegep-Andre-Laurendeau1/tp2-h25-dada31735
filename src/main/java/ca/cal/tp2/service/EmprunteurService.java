@@ -1,6 +1,8 @@
 package ca.cal.tp2.service;
 
+import ca.cal.tp2.dto.DocumentDTO;
 import ca.cal.tp2.modele.*;
+import ca.cal.tp2.persistance.DocumentRepository;
 import ca.cal.tp2.persistance.EmpruntRepository;
 import ca.cal.tp2.persistance.EmprunteurRepository;
 
@@ -10,15 +12,21 @@ import java.util.List;
 public class EmprunteurService {
     private final EmpruntRepository empruntRepository;
     private final EmprunteurRepository emprunteurRepository;
+    private final DocumentRepository documentRepository;
 
-    public EmprunteurService(EmpruntRepository empruntRepository, EmprunteurRepository emprunteurRepository) {
+    public EmprunteurService(EmpruntRepository empruntRepository, EmprunteurRepository emprunteurRepository, DocumentRepository documentRepository) {
         this.empruntRepository = empruntRepository;
         this.emprunteurRepository = emprunteurRepository;
+        this.documentRepository = documentRepository;
     }
 
-    public void emprunterDocument(long emprunteurId, Document document) {
+
+    public void emprunterDocument(long emprunteurId, DocumentDTO documentDTO) {
         Emprunteur emprunteur = emprunteurRepository.findByIdWithEmprunts(emprunteurId);
+        Document document = documentDTO.toDocument();
         if (document.verifieDisponibilite()) {
+            documentRepository.save(document);
+
             Emprunt emprunt = new Emprunt();
             emprunt.setDateEmprunt(LocalDate.now());
             emprunt.setStatus("En cours");
@@ -39,7 +47,6 @@ public class EmprunteurService {
             throw new RuntimeException("No copies available");
         }
     }
-
     private int getBorrowingPeriod(Document document) {
         if (document instanceof Livre) {
             return 3;

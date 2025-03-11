@@ -44,11 +44,11 @@ public class LivreRepositoryJPA implements LivreRepository {
     @Override
     public Livre recherche(String titre, String auteur) {
         try (EntityManager em = entityManagerFactory.createEntityManager()) {
-            return em.createQuery("SELECT l FROM Livre l WHERE Lower(l.titre) LIKE :titre AND l.auteur=auteur", Livre.class)
+            return em.createQuery("SELECT l FROM Livre l WHERE Lower(l.titre) LIKE :titre AND l.auteur = :auteur", Livre.class)
                     .setParameter("titre", "%" + titre.toLowerCase() + "%")
+                    .setParameter("auteur", auteur)
                     .getSingleResult();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (NoResultException e) {
             return null;
         }
     }

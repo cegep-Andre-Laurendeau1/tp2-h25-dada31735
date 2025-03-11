@@ -1,5 +1,8 @@
 package ca.cal.tp2.service;
 
+import ca.cal.tp2.dto.CDDTO;
+import ca.cal.tp2.dto.DVDDTO;
+import ca.cal.tp2.dto.LivreDTO;
 import ca.cal.tp2.modele.CD;
 import ca.cal.tp2.modele.DVD;
 import ca.cal.tp2.modele.Emprunteur;
@@ -27,12 +30,12 @@ public class PreposeService {
         livreRepository.save(livre);
     }
 
-    public Livre obtenirLivre(long id) {
-        return livreRepository.get(id);
+    public LivreDTO obtenirLivre(long id) {
+        return new LivreDTO(livreRepository.get(id));
     }
 
-    public Livre rechercheLivre(String titre, String auteur) {
-        return livreRepository.recherche(titre, auteur);
+    public LivreDTO rechercheLivre(String titre, String auteur) {
+        return new LivreDTO(livreRepository.recherche(titre, auteur));
     }
 
     public void ajouterCD(String titre, int nombreExemplaire, String artiste, int duree, String genre) {
@@ -40,8 +43,8 @@ public class PreposeService {
         cdRepository.save(cd);
     }
 
-    public CD obtenirCD(long id) {
-        return cdRepository.get(id);
+    public CDDTO obtenirCD(long id) {
+        return new CDDTO(cdRepository.get(id));
     }
 
     public void ajouterDVD(String titre, int nombreExemplaire, String realisateur, int duree, String rating) {
@@ -49,8 +52,8 @@ public class PreposeService {
         dvdRepository.save(dvd);
     }
 
-    public DVD obtenirDVD(long id) {
-        return dvdRepository.get(id);
+    public DVDDTO obtenirDVD(long id) {
+        return new DVDDTO(dvdRepository.get(id));
     }
 
     public void ajouterEmprunteur(String nom, String courriel, String telephone) {
