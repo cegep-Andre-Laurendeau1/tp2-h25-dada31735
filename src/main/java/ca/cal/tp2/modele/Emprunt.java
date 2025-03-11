@@ -9,7 +9,6 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.util.List;
 
-
 @Entity
 @Getter
 @Setter
@@ -25,6 +24,16 @@ public class Emprunt {
     @ManyToOne
     private Emprunteur emprunteur;
 
-    @OneToMany(mappedBy = "emprunt")
+    @OneToMany(mappedBy = "emprunt", cascade = CascadeType.ALL)
     private List<EmpruntDetail> items;
+
+    @Override
+    public String toString() {
+        return "Emprunt{" +
+                "borrowID=" + borrowID +
+                ", dateEmprunt=" + dateEmprunt +
+                ", status='" + status + '\'' +
+                ", items=" + items +
+                '}';
+    }
 }

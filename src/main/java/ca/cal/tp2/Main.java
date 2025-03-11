@@ -41,7 +41,7 @@ public class Main {
             List<Emprunt> emprunts = emprunteurService.obtenirEmprunts(emprunteur.getUserID());
             System.out.println("Liste des emprunts pour " + emprunteur.getName() + ":");
             for (Emprunt emprunt : emprunts) {
-                System.out.println("Emprunt ID: " + emprunt.getBorrowID() + ", Date: " + emprunt.getDateEmprunt() + ", Status: " + emprunt.getStatus());
+                System.out.println(emprunt);
             }
         }
 

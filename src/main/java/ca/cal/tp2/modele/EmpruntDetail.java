@@ -37,4 +37,14 @@ public class EmpruntDetail {
     public void updateStatus() {
         System.out.println("Update status");
     }
+
+    @Override
+    public String toString() {
+        return "EmpruntDetail{" +
+                "lineItemID=" + lineItemID +
+                ", dateRetourPrevue=" + dateRetourPrevue +
+                ", status='" + status + '\'' +
+                ", document=" + document.getTitre() +
+                '}';
+    }
 }

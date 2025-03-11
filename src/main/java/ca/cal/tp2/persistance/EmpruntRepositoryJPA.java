@@ -25,7 +25,7 @@ public class EmpruntRepositoryJPA implements EmpruntRepository {
     @Override
     public List<Emprunt> findByEmprunteurId(long id) {
         try (EntityManager em = entityManagerFactory.createEntityManager()) {
-            return em.createQuery("SELECT e FROM Emprunt e WHERE e.emprunteur.id = :emprunteurId", Emprunt.class)
+            return em.createQuery("SELECT e FROM Emprunt e LEFT JOIN FETCH e.items WHERE e.emprunteur.id = :emprunteurId", Emprunt.class)
                     .setParameter("emprunteurId", id)
                     .getResultList();
         } catch (Exception e) {

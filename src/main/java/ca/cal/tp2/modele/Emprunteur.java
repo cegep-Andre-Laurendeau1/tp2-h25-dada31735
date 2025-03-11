@@ -26,4 +26,14 @@ public class Emprunteur extends Utilisateur {
     public Emprunteur(String nom, String telephone, String courriel) {
         super(nom, courriel, telephone);
     }
+
+    @Override
+    public String toString() {
+        return "Emprunteur{" +
+                "nom='" + getName() + '\'' +
+                ", courriel='" + getEmail() + '\'' +
+                ", telephone='" + getPhoneNumber() + '\'' +
+                ", emprunts=" + emprunts +
+                '}';
+    }
 }

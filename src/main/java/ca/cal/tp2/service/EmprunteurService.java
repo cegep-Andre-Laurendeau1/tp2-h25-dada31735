@@ -1,9 +1,6 @@
 package ca.cal.tp2.service;
 
-import ca.cal.tp2.modele.Document;
-import ca.cal.tp2.modele.Emprunteur;
-import ca.cal.tp2.modele.Emprunt;
-import ca.cal.tp2.modele.EmpruntDetail;
+import ca.cal.tp2.modele.*;
 import ca.cal.tp2.persistance.EmpruntRepository;
 import ca.cal.tp2.persistance.EmprunteurRepository;
 
@@ -29,7 +26,7 @@ public class EmprunteurService {
 
             EmpruntDetail detail = new EmpruntDetail();
             detail.setDocument(document);
-            detail.setDateRetourPrevue(LocalDate.now().plusWeeks(2));
+            detail.setDateRetourPrevue(LocalDate.now().plusWeeks(getBorrowingPeriod(document)));
             detail.setStatus("Emprunté");
             detail.setEmprunt(emprunt);
 
@@ -41,6 +38,17 @@ public class EmprunteurService {
         } else {
             throw new RuntimeException("No copies available");
         }
+    }
+
+    private int getBorrowingPeriod(Document document) {
+        if (document instanceof Livre) {
+            return 3;
+        } else if (document instanceof CD) {
+            return 2;
+        } else if (document instanceof DVD) {
+            return 1;
+        }
+        return 0;
     }
 
     public List<Emprunt> obtenirEmprunts(long emprunteurId) {
